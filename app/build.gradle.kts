@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -62,6 +63,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.koin.androidx.compose)
     implementation(libs.play.services.base)
+    implementation(libs.gms.play.services.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -71,7 +73,13 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.play.services.auth)
+    implementation ("androidx.compose.runtime:runtime-livedata:1.5.2")
+
+    //Firebase
+    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
 
 }

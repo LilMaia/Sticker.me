@@ -1,42 +1,41 @@
 package com.stickerme.login.presentation
 
-import android.content.Intent
-import androidx.activity.compose.ManagedActivityResultLauncher
-import androidx.activity.result.ActivityResult
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.activity.result.ActivityResultLauncher
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import android.app.Activity
+import android.content.Intent
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 
 class LoginContentViewModel : ViewModel() {
-    private val _googleSignInResult = MutableLiveData<GoogleSignInAccount?>()
-    val googleSignInResult: LiveData<GoogleSignInAccount?> = _googleSignInResult
+    private val _loginResult = mutableStateOf<Boolean?>(null)
+    val loginResult: State<Boolean?> = _loginResult
 
-    // Função para iniciar o processo de login com o Google
-    fun launchGoogleSignIn(launcher: ManagedActivityResultLauncher<Intent, ActivityResult>) {
-        // Aqui você deve criar a configuração do GoogleSignInOptions e iniciar a atividade de login
-        // e fornecer o resultado ao launcher passado como parâmetro
-        // Exemplo:
-        // val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        //     .requestEmail()
-        //     .build()
-        // val signInClient = GoogleSignIn.getClient(activity, gso)
-        // val signInIntent = signInClient.signInIntent
-        // launcher(ActivityResult(0, Activity.RESULT_OK, signInIntent))
+    fun launchSignInFlow(activity: ActivityResultLauncher<Intent>) {
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.GoogleBuilder().build()
+        )
+
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setAvailableProviders(providers)
+            .build()
+
+        // Inicie a atividade usando o activity (ActivityResultLauncher)
+        activity.launch(signInIntent)
     }
 
-    // Função para processar o resultado do login com o Google
-    fun handleSignInResult(result: ActivityResult) {
-        if (result.resultCode == android.app.Activity.RESULT_OK) {
-            // O login foi bem-sucedido, você pode obter a conta do usuário assim:
-            // val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            // val account = task.getResult(ApiException::class.java)
-            // _googleSignInResult.value = account
+    fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+        val response = result.idpResponse
+        if (result.resultCode == Activity.RESULT_OK) {
+            // O login foi bem-sucedido
+            _loginResult.value = true
         } else {
-            // O login falhou, você pode tratar isso de acordo com as necessidades do seu aplicativo
-            // Por exemplo, mostrar uma mensagem de erro para o usuário
-            // _googleSignInResult.value = null
+            // O login falhou
+            _loginResult.value = false
         }
     }
-
 }

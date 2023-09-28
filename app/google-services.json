@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "610266796175",
+    "project_id": "stickerme-991db",
+    "storage_bucket": "stickerme-991db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610266796175:android:cbfd64baedf85014f120fa",
+        "android_client_info": {
+          "package_name": "com.stickerme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610266796175-91p6i5fvu8j2pm69rpo2eon12r5o36i0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stickerme",
+            "certificate_hash": "6a4333ca0d1e957ff3f4220d5c88ea22201f139c"
+          }
+        },
+        {
+          "client_id": "610266796175-rfnu7g78bv59ivi8r45a769tld9lqvup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtUg1cPZt7YdWW2Lm0wLP1JLaKSSF0o4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610266796175-rfnu7g78bv59ivi8r45a769tld9lqvup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

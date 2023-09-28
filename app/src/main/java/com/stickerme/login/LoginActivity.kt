@@ -23,7 +23,7 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    LoginNavigation(navController)
+                    LoginNavigation(navController, this)
                 }
             }
         }
