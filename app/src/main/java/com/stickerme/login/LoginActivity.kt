@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.TopAppBarState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.stickerme.ui.theme.StickerMeTheme
@@ -21,7 +22,7 @@ class LoginActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     LoginNavigation(navController, this)
                 }

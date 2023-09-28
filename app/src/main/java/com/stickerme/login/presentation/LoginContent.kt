@@ -42,7 +42,7 @@ fun LoginContent(activity: Activity) {
 
             // Exibir uma mensagem com base no resultado do login
             Text(
-                text = if (loginResult!!) "Login Successful" else "Login Failed",
+                text = if (loginResult == true) "Login Successful" else "Login Failed",
                 modifier = Modifier.padding(16.dp)
             )
         }
