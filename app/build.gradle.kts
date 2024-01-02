@@ -76,8 +76,8 @@ dependencies {
     implementation (libs.androidx.runtime.livedata)
     implementation (libs.androidx.material)
 
-    //Firebase
-    implementation(libs.firebase.ui.auth)
+    //Firebase não mexer da erro sempre que muda para padrao novo
+    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
