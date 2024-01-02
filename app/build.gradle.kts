@@ -73,10 +73,11 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
-    implementation ("androidx.compose.runtime:runtime-livedata:1.5.2")
+    implementation (libs.androidx.runtime.livedata)
+    implementation (libs.androidx.material)
 
     //Firebase
-    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
+    implementation(libs.firebase.ui.auth)
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")

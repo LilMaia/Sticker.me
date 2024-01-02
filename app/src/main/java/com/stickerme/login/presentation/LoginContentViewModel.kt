@@ -30,12 +30,6 @@ class LoginContentViewModel : ViewModel() {
 
     fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         val response = result.idpResponse
-        if (result.resultCode == Activity.RESULT_OK) {
-            // O login foi bem-sucedido
-            _loginResult.value = true
-        } else {
-            // O login falhou
-            _loginResult.value = false
-        }
+        _loginResult.value = result.resultCode == Activity.RESULT_OK
     }
 }

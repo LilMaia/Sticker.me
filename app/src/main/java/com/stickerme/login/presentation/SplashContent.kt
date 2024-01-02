@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -28,7 +29,7 @@ fun SplashContent(navController: NavController) {
     StickerMeTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = Color.Yellow// Define a cor de fundo como laranja
+            color = Color.Yellow
         ) {
             // Coloque aqui o seu logotipo ou imagem de splash screen
             Image(
