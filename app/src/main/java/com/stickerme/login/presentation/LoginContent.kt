@@ -25,9 +25,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.stickerme.ui.theme.StickerMeTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 
 @Composable
-fun LoginContent(activity: Activity) {
+fun LoginContent(activity: Activity, navController: NavController) {
     val viewModel: LoginContentViewModel = viewModel()
 
     val signInLauncher = rememberLauncherForActivityResult(
@@ -45,17 +46,21 @@ fun LoginContent(activity: Activity) {
         ) {
             GoogleLoginButton(viewModel, signInLauncher)
 
-            // Exibir uma mensagem com base no resultado do login
-            Text(
-                text = if (loginResult == true) "Login Successful" else "Login Failed",
-                modifier = Modifier.padding(16.dp)
-            )
+            if (loginResult == true) {
+                navController.navigate("home")
+            } else {
+                Text(text = "Login failed")
+            }
+
         }
     }
 }
 
 @Composable
-fun GoogleLoginButton(viewModel: LoginContentViewModel, signInLauncher: ActivityResultLauncher<Intent>) {
+fun GoogleLoginButton(
+    viewModel: LoginContentViewModel,
+    signInLauncher: ActivityResultLauncher<Intent>
+) {
     Button(
         onClick = { viewModel.launchSignInFlow(signInLauncher) },
         modifier = Modifier
@@ -70,6 +75,6 @@ fun GoogleLoginButton(viewModel: LoginContentViewModel, signInLauncher: Activity
 @Composable
 fun loginContentPreview() {
     StickerMeTheme {
-        LoginContent(activity = Activity())
+        LoginContent(activity = Activity(), navController = NavController(Activity()))
     }
 }

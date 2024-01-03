@@ -8,11 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.navArgument
 import com.stickerme.R
+import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
-fun HomeBottomNav(navController: NavHostController) {
+fun HomeBottomNav(navController: NavHostController, homeActivity: HomeActivity) {
     val navigationItems = listOf(
         HomeBottomNavItem.Home,
         HomeBottomNavItem.Pacotes,
@@ -47,6 +53,38 @@ fun HomeBottomNav(navController: NavHostController) {
             )
         }
     }
+}
+
+@Composable
+fun NavigationGraph(navController: NavHostController) {
+    NavHost(navController = navController, startDestination  = BottomNavItem.Home.route) {
+        composable(route = BottomNavItem.Home.route) {
+            MoviesHomeContent(
+                navigateToMovieDetails = {
+                    navController.navigate(AppRoutes.MovieDetails.name + "/$it")
+                }
+            )
+        }
+        composable(route = BottomNavItem.MoviesGenre.route) {
+            MoviesGenresContent()
+        }
+        composable(
+            route = AppRoutes.MovieDetails.name + "/{movieId}",
+            arguments = listOf(navArgument("movieId") {
+                type = NavType.StringType
+                nullable = false
+            })
+        ) {
+            getViewModel<MovieDetailsViewModel>(parameters = {
+                parametersOf(it.arguments?.getString("movieId")!!)
+            })
+            MovieDetailsContent(it.arguments?.getString("movieId")!!)
+        }
+    }
+}
+
+enum class AppRoutes {
+    MovieDetails
 }
 
 sealed class HomeBottomNavItem(
