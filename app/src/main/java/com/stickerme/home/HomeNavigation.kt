@@ -57,29 +57,29 @@ fun HomeBottomNav(navController: NavHostController, homeActivity: HomeActivity) 
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination  = BottomNavItem.Home.route) {
-        composable(route = BottomNavItem.Home.route) {
-            MoviesHomeContent(
-                navigateToMovieDetails = {
-                    navController.navigate(AppRoutes.MovieDetails.name + "/$it")
-                }
-            )
+    NavHost(navController = navController, startDestination  = HomeBottomNavItem.Home.route) {
+        composable(route = HomeBottomNavItem.Home.route) {
+//            MoviesHomeContent(
+//                navigateToMovieDetails = {
+//                    navController.navigate(AppRoutes.MovieDetails.name + "/$it")
+//                }
+//            )
         }
-        composable(route = BottomNavItem.MoviesGenre.route) {
-            MoviesGenresContent()
-        }
-        composable(
-            route = AppRoutes.MovieDetails.name + "/{movieId}",
-            arguments = listOf(navArgument("movieId") {
-                type = NavType.StringType
-                nullable = false
-            })
-        ) {
-            getViewModel<MovieDetailsViewModel>(parameters = {
-                parametersOf(it.arguments?.getString("movieId")!!)
-            })
-            MovieDetailsContent(it.arguments?.getString("movieId")!!)
-        }
+//        composable(route = HomeBottomNavItem.MoviesGenre.route) {
+//            MoviesGenresContent()
+//        }
+//        composable(
+//            route = AppRoutes.MovieDetails.name + "/{movieId}",
+//            arguments = listOf(navArgument("movieId") {
+//                type = NavType.StringType
+//                nullable = false
+//            })
+//        ) {
+//            getViewModel<MovieDetailsViewModel>(parameters = {
+//                parametersOf(it.arguments?.getString("movieId")!!)
+//            })
+//            MovieDetailsContent(it.arguments?.getString("movieId")!!)
+//        }
     }
 }
 
